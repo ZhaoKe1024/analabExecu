@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.analab.execu.mapper.SubMenuMapper">
+  <resultMap id="BaseResultMap" type="com.analab.execu.bean.SubMenu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, path, mid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from submenu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from submenu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.analab.execu.bean.SubMenu">
+    insert into submenu (id, title, path, 
+      mid)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{mid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.analab.execu.bean.SubMenu">
+    insert into submenu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="mid != null">
+        mid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.analab.execu.bean.SubMenu">
+    update submenu
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null">
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.analab.execu.bean.SubMenu">
+    update submenu
+    set title = #{title,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      mid = #{mid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

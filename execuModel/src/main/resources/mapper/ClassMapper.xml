@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.analab.execu.mapper.ClassMapper">
+  <resultMap id="BaseResultMap" type="com.analab.execu.bean.Class">
+    <id column="classid" jdbcType="VARCHAR" property="classid" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="teacherid" jdbcType="VARCHAR" property="teacherid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    classid, subject, teacherid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    where classid = #{classid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from class
+    where classid = #{classid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.analab.execu.bean.Class">
+    insert into class (classid, subject, teacherid
+      )
+    values (#{classid,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{teacherid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.analab.execu.bean.Class">
+    insert into class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classid != null">
+        classid,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="teacherid != null">
+        teacherid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classid != null">
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null">
+        #{teacherid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.analab.execu.bean.Class">
+    update class
+    <set>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null">
+        teacherid = #{teacherid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where classid = #{classid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.analab.execu.bean.Class">
+    update class
+    set subject = #{subject,jdbcType=VARCHAR},
+      teacherid = #{teacherid,jdbcType=VARCHAR}
+    where classid = #{classid,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

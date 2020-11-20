@@ -1,0 +1,37 @@
+{
+  "id": "2163807",
+  "name": "sportplay",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11122374",
+      "name": "替换",
+      "font_class": "tihuan",
+      "unicode": "e6f4",
+      "unicode_decimal": 59124
+    },
+    {
+      "icon_id": "4425947",
+      "name": "用户",
+      "font_class": "-",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "4265418",
+      "name": "小组成员",
+      "font_class": "xiaozuchengyuan",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "9033358",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    }
+  ]
+}

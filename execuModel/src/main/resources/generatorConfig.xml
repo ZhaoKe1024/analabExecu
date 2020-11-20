@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+ <!--指定数据库jdbc驱动jar包的位置-->
+    <classPathEntry location="C:\Users\zhaoke\.m2\repository\mysql\mysql-connector-java\8.0.21\mysql-connector-java-8.0.21.jar"/>
+     <!--id随意起，但Mybatis3,必须与你使用的版本一致-->
+    <context id="Free" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- Mysql数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/vsep?serverTimezone=GMT"
+                        userId="root"
+                        password="zksmysql">
+        </jdbcConnection>
+
+        <!-- 默认为false，把JDBC DECIMAL 和NUMERIC类型解析为Integer，为true时
+        把JDBC DECIMAL 和NUMERIC类型解析为java.math.BigDecimal -->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- targetProject：生成POJO类的位置 -->
+        <javaModelGenerator targetPackage="com.analab.execu.bean" targetProject=".\src\main\java\">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- targetProject：mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.analab.execu.mapper"  targetProject=".\src\main\java\">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- targetProject：mapper接口生成的的位置 -->s
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.analab.execu.mapper"  targetProject=".\src\main\java\">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 指定数据表 -->
+        <table tableName="student" domainObjectName="Student"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+        <table tableName="admin" domainObjectName="Admin"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+        <table tableName="class" domainObjectName="Class"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+        <table tableName="experiment" domainObjectName="Experiment"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+        <table tableName="record" domainObjectName="Record"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+        <table tableName="selectSubject" domainObjectName="SelectSubject"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+        <table tableName="subMenu" domainObjectName="SubMenu"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+        <table tableName="teacher" domainObjectName="Teacher"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+        />
+
+    </context>
+</generatorConfiguration>

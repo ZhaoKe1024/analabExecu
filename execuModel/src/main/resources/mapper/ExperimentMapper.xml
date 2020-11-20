@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.analab.execu.mapper.ExperimentMapper">
+  <resultMap id="BaseResultMap" type="com.analab.execu.bean.Experiment">
+    <id column="experid" jdbcType="VARCHAR" property="experid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="experission" jdbcType="VARCHAR" property="experission" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    experid, name, subject, field, author, experission
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from experiment
+    where experid = #{experid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from experiment
+    where experid = #{experid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.analab.execu.bean.Experiment">
+    insert into experiment (experid, name, subject, 
+      field, author, experission
+      )
+    values (#{experid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
+      #{field,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{experission,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.analab.execu.bean.Experiment">
+    insert into experiment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="experid != null">
+        experid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="field != null">
+        field,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="experission != null">
+        experission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="experid != null">
+        #{experid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="experission != null">
+        #{experission,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.analab.execu.bean.Experiment">
+    update experiment
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        field = #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="experission != null">
+        experission = #{experission,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where experid = #{experid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.analab.execu.bean.Experiment">
+    update experiment
+    set name = #{name,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      field = #{field,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      experission = #{experission,jdbcType=VARCHAR}
+    where experid = #{experid,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

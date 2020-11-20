@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.analab.execu.mapper.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.analab.execu.bean.Teacher">
+    <id column="teacherid" jdbcType="VARCHAR" property="teacherid" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="teachername" jdbcType="VARCHAR" property="teachername" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    teacherid, password, teachername
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where teacherid = #{teacherid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from teacher
+    where teacherid = #{teacherid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.analab.execu.bean.Teacher">
+    insert into teacher (teacherid, password, teachername
+      )
+    values (#{teacherid,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{teachername,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.analab.execu.bean.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teacherid != null">
+        teacherid,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="teachername != null">
+        teachername,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teacherid != null">
+        #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null">
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.analab.execu.bean.Teacher">
+    update teacher
+    <set>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null">
+        teachername = #{teachername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teacherid = #{teacherid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.analab.execu.bean.Teacher">
+    update teacher
+    set password = #{password,jdbcType=VARCHAR},
+      teachername = #{teachername,jdbcType=VARCHAR}
+    where teacherid = #{teacherid,jdbcType=VARCHAR}
+  </update>
+
+</mapper>
